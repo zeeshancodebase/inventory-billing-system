@@ -1,0 +1,107 @@
+.container {
+  padding: 32px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table thead {
+  background-color: #f0f0f0;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  text-transform: capitalize;
+}
+
+.status.completed {
+  background-color: #28a745;
+}
+
+.status.pending {
+  background-color: #ffc107;
+  color: black;
+}
+
+.status.other {
+  background-color: #6c757d;
+}
+
+.btn {
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.viewBtn {
+  background-color: #2e3a59;
+}
+
+.cancelBtn {
+  background-color: #c0392b;
+  margin-left: 6px;
+}
+
+.returnBtn {
+  background-color: #f39c12;
+  margin-left: 6px;
+}
+
+/* Mobile Cards */
+.cards {
+  display: none;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+}
+
+.cardRow {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.cardActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table {
+    display: none;
+  }
+  .cards {
+    display: block;
+  }
+}

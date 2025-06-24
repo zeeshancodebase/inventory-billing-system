@@ -1,0 +1,29 @@
+.clock-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f0f0f3, #cacaca);
+    box-shadow: 8px 8px 20px #bebebe, -8px -8px 20px #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2d2d2d;
+    max-width: 320px;
+    margin: 20px auto;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .clock-time {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .clock-date {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.75;
+    text-align: center;
+  }
+  

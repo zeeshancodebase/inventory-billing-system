@@ -1,0 +1,139 @@
+/* AddProduct.css */
+
+.add-product-container {
+    padding: 40px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+
+
+    /* Input and select styling */
+    input,
+    select {
+        font-size: 14px;
+        padding: 8px 10px;
+        border-radius: 50px;
+        border: 1px solid #ddd;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+  
+
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    input[type="textarea"]:focus,
+    select:focus {
+        /* border-color: #007bff; */
+        outline: none;
+        border: 2px solid #007bff;;
+    }
+
+
+    /* To hide the increment and decrement arrows of number input */
+    /* Chrome, Safari, Edge, Opera */
+    /* input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  } */
+
+    /* Firefox */
+    /* input[type='number'] {
+    -moz-appearance: textfield;
+  } */
+
+}
+
+.add-product-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2e3a59;
+}
+
+.add-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.addProd-form-group {
+    display: flex;
+    flex-grow: row;
+    gap: 20px;
+    width: 100%;
+}
+
+
+.addProd-input-group {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+
+
+
+
+.addProduct-btn {
+    background: #2e3a59;
+    color: white;
+    margin-bottom: 0;
+    margin-top: auto;
+    padding: 12px 0;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    width: 50%;
+    height: 50%;
+    transition: background 0.3s ease;
+}
+
+.addProduct-btn:hover {
+    background: #34495e;
+}
+
+.success-msg {
+    color: green;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .add-product-container {
+        padding: 20px;
+    }
+
+    .add-product-form {
+        grid-template-columns: 1fr;
+    }
+
+    .price-fields {
+        flex-direction: column;
+    }
+
+    .price-group {
+        margin-bottom: 20px;
+    }
+}

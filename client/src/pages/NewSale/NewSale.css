@@ -1,0 +1,500 @@
+.sale-content {
+  background-color: white;
+  /* border: 25px solid #ff0000; */
+  padding: 10px;
+  width: 100%;
+  height: calc(100vh - 61px);
+  overflow: hidden;
+  display: flex;
+
+
+
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  h3 {
+    font-size: 22px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  /* Input and select styling */
+  input,
+  select {
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+
+
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  input[type="date"]:focus,
+  input[type="textarea"]:focus,
+  select:focus {
+    /* border-color: #007bff; */
+    outline: none;
+    border: 2px solid #007bff;
+    ;
+  }
+
+  /* To hide the increment and decrement arrows of number input */
+  /* Chrome, Safari, Edge, Opera */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+
+  button {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  }
+
+
+  button:disabled {
+    background-color: #b0b0b0;
+    cursor: not-allowed;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table th,
+  table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+
+  table th {
+    background-color: #f0f0f0;
+    color: #444;
+  }
+
+  table td {
+    background-color: #fff;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+
+  .products-section,
+  .cart-section {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .cart-section {
+    overflow-y: auto;
+  }
+
+  .remove-btn {
+    padding: 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .remove-btn:hover {
+
+    color: white;
+    background-color: #c82333;
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+
+
+
+  .product-selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    /* border: 5px solid red; */
+
+    input[type="text"] {
+      padding: 12px;
+    }
+  }
+
+
+
+  /* Styling for the table only */
+
+  .product-list-table {
+
+    width: 100%;
+    min-height: 326px;
+    height: 370px;
+    overflow-y: auto;
+    border-bottom: 2px solid #ddd;
+    border-radius: 5px;
+
+    th {
+      position: sticky;
+      top: 0;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+      /* Hides the scrollbar in WebKit browsers */
+    }
+
+    table {
+
+
+      td {
+
+        padding: 5px;
+
+
+        button {
+          background-color: #007bff;
+          /* Blue button for add to cart */
+          color: white;
+          padding: 5px;
+          border: none;
+          border-radius: 5px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 40px;
+          height: 40px;
+        }
+
+        button:hover {
+          background-color: #0056b3;
+          /* Darker blue on hover */
+          transform: scale(1.1);
+        }
+
+        button:focus {
+          outline: none;
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+          /* Blue focus outline */
+        }
+
+
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+
+
+          button {
+            background-color: #28a745;
+            /* Green color for +/- buttons */
+            color: white;
+            border-radius: 50%;
+            padding: 6px;
+            border: none;
+            font-size: 24px;
+            width: 30px;
+            height: 30px;
+          }
+
+          button:hover {
+            background-color: #218838;
+            /* Darker green on hover */
+          }
+
+          input {
+            font-size: 12px;
+            padding: 6px;
+          }
+
+
+          input:focus {
+            border-color: #28a745;
+            /* Green focus border */
+            outline: none;
+          }
+
+
+        }
+      }
+    }
+
+  }
+
+  .product-list-table::-webkit-scrollbar {
+    display: none;
+    /* Hides the scrollbar in WebKit browsers */
+  }
+
+
+
+  .sale-header {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .sale-meta-data {
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 10px 20px;
+    align-items: center;
+    margin-top: 15px;
+
+
+
+    input[type="date"],
+    input [type="text"],
+    input[type="number"] {
+      flex-grow: 1;
+    }
+
+  }
+
+  /* select {
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+  } */
+
+
+
+  .customer-data-section {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+  }
+
+  .customer-data-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+
+    input[type="text"] {
+      flex-grow: 1;
+      width: auto;
+    }
+
+    input[type=textarea] {
+      width: 100%;
+    }
+
+    .customer-input-group {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+
+  }
+
+
+  .cart-summary {
+    /* border: 5px solid red; */
+    margin-bottom: 10px;
+  }
+
+
+
+
+
+
+
+
+  .order-summary {
+    display: flex;
+    box-sizing: border-box;
+  }
+
+
+
+  /* Styling for each section */
+  .order-summary-section-1 {
+    width: 45%;
+
+    td {
+      padding: 5px;
+      width: 50%;
+    }
+  }
+
+  .order-summary-section-2 {
+    width: 55%;
+
+    td {
+      padding: 2px;
+    }
+
+    tr,
+    td {
+      border: none;
+    }
+
+  }
+
+  .summary-table {
+    width: 100%;
+    font-size: 14px;
+    color: #555;
+    border-collapse: collapse;
+
+
+    input,
+    select {
+      width: 80%;
+      text-align: center;
+    }
+
+    /* select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      text-align-last: center;
+    } */
+
+
+  }
+
+  .button-area {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  /* Submit Button */
+  .submit-btn {
+    background-color: #28a745;
+
+  }
+
+  .submit-btn:hover {
+    background-color: #218838;
+    /* Darker green on hover */
+  }
+
+  /* Reset Button */
+  .reset-btn {
+    background-color: #dc3545;
+
+  }
+
+  .reset-btn:hover {
+    background-color: #c82333;
+    /* Darker blue on hover */
+  }
+
+  .reset-btn:disabled {
+    background-color: #b0b0b0;
+    /* Grey when disabled */
+    cursor: not-allowed;
+  }
+
+
+  .success-message,
+  .error-message {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .success-message {
+    color: #28a745;
+  }
+
+  .error-message {
+    color: #dc3545;
+  }
+
+  .payment-method {
+    margin-top: 10px;
+  }
+
+  .payment-method select {
+    width: 100%;
+  }
+
+  .payment-amount input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+}
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .order-summary {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .order-summary-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .sale-container {
+    padding: 20px;
+  }
+
+  .product-selection {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .summary-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
