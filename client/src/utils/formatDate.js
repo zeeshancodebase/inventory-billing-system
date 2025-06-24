@@ -10,6 +10,16 @@ export const formatDate = (timestamp) => {
   return `${day}-${month}-${year}`;
 };
 
+export const formatTime = (timestamp) => {
+  const date = new Date(timestamp);
+  return date.toLocaleTimeString('en-IN', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  });
+};
+
+
 // Optional: For full date and time
 export const formatDateTime = (timestamp) => {
   const date = new Date(timestamp);

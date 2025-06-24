@@ -8,16 +8,20 @@ import { useDeviceSize } from "../../context/DeviceSizeContext";
 import styles from "./InvoiceHistory.module.css";
 import AdminOnly from "../../utils/AdminOnly";
 import { useAuth } from "../../context/auth";
+import Spinner from "../../components/Spinner";
 
 const InvoiceHistory = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { isMobile } = useDeviceSize();
   const [sales, setSales] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchSales = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           "http://localhost:5000/api/getAllSales"
         );
@@ -25,7 +29,9 @@ const InvoiceHistory = () => {
         console.log("Fetched sales:", response.data);
       } catch (error) {
         console.error("Failed to fetch sales:", error);
-      }
+      }finally {
+      setLoading(false); 
+    }
     };
 
     fetchSales();
@@ -65,6 +71,8 @@ const InvoiceHistory = () => {
                 <th>Actions</th>
               </tr>
             </thead>
+            {loading ? (
+              <Spinner/>):(
             <tbody>
               {sales.map((sale) => (
                 <tr key={sale.invoiceId}>
@@ -113,7 +121,7 @@ const InvoiceHistory = () => {
                   </td>
                 </tr>
               ))}
-            </tbody>
+            </tbody>)}
           </table>
         </>
       ) : (

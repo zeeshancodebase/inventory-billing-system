@@ -87,6 +87,7 @@ const InvoicePDF = ({ invoiceData }) => {
               <Text style={{ fontSize: "12px" }}>Date: {formattedDate}</Text>
               <Text style={{ fontSize: "12px" }}>Time: {formattedTime}</Text>
             </View>
+           
 
             {/* Customer Info */}
 
@@ -142,7 +143,11 @@ const InvoicePDF = ({ invoiceData }) => {
             </View>
           ))}
         </View>
-
+ {invoiceData.status === "cancelled" && (
+              <View style={styles.cancelledStamp}>
+                <Text style={styles.cancelledText}>CANCELLED</Text>
+              </View>
+            )}
         {/* Summary Section */}
         <View style={styles.summarySection}>
           <View style={styles.twoColumnRow}>
@@ -199,7 +204,7 @@ const InvoicePDF = ({ invoiceData }) => {
                 <Text>{paymentMethod}</Text>
               </View>
               <View style={styles.twoColumnRow}>
-                <Text style={{paddingTop:"5px"}}>Amount Paid:</Text>
+                <Text style={{ paddingTop: "5px" }}>Amount Paid:</Text>
                 <Text style={{ fontSize: "16px", fontWeight: "bold" }}>
                   <Text style={styles.rupIcon}>₹</Text>
                   {Number(amountReceived).toLocaleString("en-IN")}
@@ -328,12 +333,32 @@ const styles = StyleSheet.create({
   termsHeader: {
     fontWeight: "bold",
     marginTop: 5,
-    marginBottom:4
+    marginBottom: 4,
   },
   softwareBy: {
     marginTop: 10,
     textAlign: "center",
     fontFamily: "RobotoItalic",
     fontSize: 10,
+  },
+  cancelledStamp: {
+    position: "absolute",
+    top: "40%",
+    left: "50%",
+    transform: "translate(-50%, -50%) rotate(-20deg)",
+    border: "4px solid rgba(220, 53, 69, 0.5)",
+    padding: 12,
+    borderRadius: 8,
+    backgroundColor: "rgba(255,255,255,0.1)",
+    zIndex: 999,
+  },
+
+  cancelledText: {
+    fontSize: 40,
+    color: "rgba(220, 53, 69, 0.5)",
+    fontWeight: "bold",
+    letterSpacing: 4,
+    textAlign: "center",
+    textTransform: "uppercase",
   },
 });

@@ -29,7 +29,7 @@ function ClockWidget() {
     .toISOString()
     .slice(0, 16); // YYYY-MM-DDTHH:MM
 
-  console.log('Current DateTime:', currentDateTime); // Debug output (optional)
+  // console.log('Current DateTime:', currentDateTime); // Debug output (optional)
 
   return (
     <div className="clock-widget">

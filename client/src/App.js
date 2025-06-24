@@ -25,7 +25,10 @@ import InvoicePage from './pages/Invoice/InvoicePage';
 import ResetPassword from './pages/LoginandLogout/resetPassword';
 import { Welcome } from './pages/Welcome/Welcome';
 import Reports from './pages/reports/reports';
-import {Error} from './pages/Error/Error'
+import { Error } from './pages/Error/Error'
+import PrintPreviewPage from './pages/Invoice/MobileInvoice/MobileInvoiceLayout';
+import MobileInvoiceLayout from './pages/Invoice/MobileInvoice/MobileInvoiceLayout';
+import DummyMobilePrint from './pages/Invoice/MobileInvoice/DummyMobilePrint';
 // import TempInvViewer from './pages/Invoice/TempInvViewer';
 
 
@@ -60,10 +63,15 @@ function App() {
 
 
 
-          
+
           <Route path="/invoice/:invoiceId" element={<InvoicePage />} />
           <Route path="/invoice/c/:invoiceId" element={<InvoicePage />} />
-            {/* <Route path="/inv" element={<TempInvViewer />} /> */}
+
+          {/* Thermal Print Preview */}
+
+          {/* <Route path="/inv" element={<DummyMobilePrint />} />
+          <Route path="/print-preview/:invoiceId" element={<MobileInvoiceLayout />} /> */}
+          {/* <Route path="/inv" element={<TempInvViewer />} /> */}
           {/* <Route path="/new-sale/invoice" element={<InvoicePage />} />
           <Route path="/invoice-history/invoice/:id" element={<Invoice />} /> */}
 

@@ -22,7 +22,7 @@ const SearchProduct = () => {
   const { products, loading } = useSelector((state) => state.products);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
-  const [filterType, setFilterType] = useState("rolls"); // "rolls", "boxes", or null
+  const [filterType, setFilterType] = useState("roll"); // "roll", "box", or null
 
   // Fetch products using Redux (only once on component mount)
   useEffect(() => {
@@ -110,8 +110,8 @@ const SearchProduct = () => {
 
         <div className="search-bar">
           <button
-            className={filterType === "rolls" ? "active" : ""}
-            onClick={() => handleFilter("rolls")}
+            className={filterType === "roll" ? "active" : ""}
+            onClick={() => handleFilter("roll")}
           >
             <GiRolledCloth />
             Rolls
@@ -123,8 +123,8 @@ const SearchProduct = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
-            className={filterType === "boxes" ? "active" : ""}
-            onClick={() => handleFilter("boxes")}
+            className={filterType === "box" ? "active" : ""}
+            onClick={() => handleFilter("box")}
           >
             <BsBoxSeam />
             Boxes
@@ -142,11 +142,11 @@ const SearchProduct = () => {
               <th>Type</th>
               <th>Colour</th>
               <th>Price (₹)</th>
-              {filterType !== "boxes" && <th>Length (mtr)</th>}
+              {filterType !== "box" && <th>Length (mtr)</th>}
               <th>
-                {filterType === "boxes"
+                {filterType === "box"
                   ? "Boxes"
-                  : filterType === "rolls"
+                  : filterType === "roll"
                   ? "Rolls"
                   : "Rolls/Boxes"}
               </th>
@@ -184,14 +184,14 @@ const SearchProduct = () => {
                           color: "#555",
                         }}
                       >
-                        {product.prodType === "boxes"
+                        {product.prodType === "box"
                           ? "/box"
-                          : product.prodType === "rolls"
+                          : product.prodType === "roll"
                           ? "/mtr"
                           : ""}
                       </span>
                     </td>
-                    {filterType !== "boxes" && <td>{product.totalLength}</td>}
+                    {filterType !== "box" && <td>{product.totalLength}</td>}
                     <td>{product.quantity}</td>
                     <td>{product.minimumStock}</td>
                     <td>
@@ -212,7 +212,6 @@ const SearchProduct = () => {
                       )}
                     </td>
                     <td>{product.sku || "-"}</td>
-                    {/* Assuming 'Length' and 'Units/Rolls' are the same for simplicity */}
                     <td>
                       <button className="edit-button">
                         {" "}

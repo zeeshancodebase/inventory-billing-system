@@ -20,6 +20,8 @@ const NewSale = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { products, loading } = useSelector((state) => state.products);
+  const { loading: saleLoading } = useSelector((state) => state.sale);
+
   const { user, token } = useAuth();
   const {
     cart,
@@ -526,13 +528,23 @@ const NewSale = () => {
               type="submit"
               className="submit-btn"
               onClick={handleSubmit}
-              disabled={cart.length === 0}
-              style={{ opacity: cart.length === 0 ? 0.5 : 1 }}
+              disabled={cart.length === 0 || saleLoading}
+              style={{ opacity: cart.length === 0 || saleLoading ? 0.5 : 1 }}
             >
-              Checkout
-             <button disabled={loading}>
-            {loading ? <ClipLoader color="#fff" loading={loading} size={20} />: "Login"} </button>
-              <MdShoppingCartCheckout size={25} style={{ marginLeft: "6px" }} />
+              {saleLoading ? (
+                <>
+                  <ClipLoader color="#fff" size={20} />
+                   &nbsp;CheckingOut...
+                </>
+              ) : (
+                <>
+                  Checkout
+                  <MdShoppingCartCheckout
+                    size={25}
+                    style={{ marginLeft: "6px" }}
+                  />
+                </>
+              )}
             </button>
           </div>
         </div>

@@ -1,35 +1,40 @@
 import React from "react";
 
+const spinnerBackdropStyle = {
+  position: "fixed",
+  inset: 0,
+  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  zIndex: 9999,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const spinnerStyle = {
+  width: "60px",
+  height: "60px",
+  border: "6px solid #e0e0e0",
+  borderTop: "6px solid #007BFF",
+  borderRadius: "50%",
+  animation: "spin 0.8s linear infinite",
+  transition: "all 0.3s ease-in-out",
+};
+
 const Spinner = () => {
-    const spinnerContainerStyle = {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-    };
-
-    const spinnerStyle = {
-        width: "50px",
-        height: "50px",
-        border: "5px solid rgb(0, 0, 0)",
-        borderTop: "5px solid #3498db",
-        borderRadius: "50%",
-        animation: "spin 1s linear infinite",
-    };
-
-    const keyframesStyle = `
+  return (
+    <>
+      <style>{`
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
-    `;
+      `}</style>
 
-    return (
-        <div style={spinnerContainerStyle}>
-            <style>{keyframesStyle}</style>
-            <div style={spinnerStyle}></div>
-        </div>
-    );
+      <div style={spinnerBackdropStyle}>
+        <div style={spinnerStyle}></div>
+      </div>
+    </>
+  );
 };
 
 export default Spinner;

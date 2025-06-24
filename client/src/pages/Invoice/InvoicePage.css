@@ -59,9 +59,10 @@
 .store-logo img {
   margin-top: 8px;
   margin-right: 10px;
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
   object-fit: contain;
+  border-radius: 5px;
 }
 
 .store-details {
@@ -144,7 +145,7 @@
 
 /* Discount Congrats message */
 .congrats-message {
-  color: #155724; 
+  color: #155724;
   font-family: 'Roboto', sans-serif;
   padding: 2px;
   margin: 0;
@@ -162,11 +163,12 @@
 }
 
 .success-icon {
-  color: #28a745; 
+  color: #28a745;
 }
 
 .congrats-message:hover {
-  background-color: #c3e6cb; /* Slightly darker green on hover */
+  background-color: #c3e6cb;
+  /* Slightly darker green on hover */
   cursor: pointer;
   border-radius: 5px;
 }
@@ -193,7 +195,7 @@
   }
 }
 
-.thank-you-message{
+.thank-you-message {
   display: flex;
   justify-content: center;
   border-top: 1px solid #ddd;
@@ -206,7 +208,8 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 10px;}
+  margin-top: 10px;
+}
 
 .invoice-footer-btns button {
   padding: 12px 20px;
@@ -216,41 +219,69 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  background-color: #007bff; /* Primary blue color */
+  background-color: #007bff;
+  /* Primary blue color */
   color: white;
 }
 
 .invoice-footer-btns button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: translateY(-2px); /* Adds a subtle lift effect */
+  background-color: #0056b3;
+  /* Darker blue on hover */
+  transform: translateY(-2px);
+  /* Adds a subtle lift effect */
 }
 
 .invoice-footer-btns button:active {
-  background-color: #004085; /* Even darker blue on click */
-  transform: translateY(0); /* Removes the lift effect */
+  background-color: #004085;
+  /* Even darker blue on click */
+  transform: translateY(0);
+  /* Removes the lift effect */
 }
 
 .invoice-footer-btns button:disabled {
-  background-color: #cccccc; /* Grey color for disabled state */
-  cursor: not-allowed; /* Disabled cursor */
+  background-color: #cccccc;
+  /* Grey color for disabled state */
+  cursor: not-allowed;
+  /* Disabled cursor */
 }
 
 .invoice-footer-btns button:nth-child(2) {
-  background-color: #28a745; /* Green for 'Make new sale' */
+  background-color: #28a745;
+  /* Green for 'Make new sale' */
 }
 
 .invoice-footer-btns button:nth-child(2):hover {
-  background-color: #218838; /* Darker green on hover */
+  background-color: #218838;
+  /* Darker green on hover */
 }
 
 .invoice-footer-btns button:nth-child(2):active {
-  background-color: #1e7e34; /* Even darker green on click */
+  background-color: #1e7e34;
+  /* Even darker green on click */
 }
 
 
 
 
-
+.cancelled-stamp {
+  font-family: 'Stardos Stencil', sans-serif;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-size: 80px;
+  color: rgba(220, 53, 69, 0.5);
+  /* Bootstrap red with opacity */
+  font-weight: 900;
+  border: 5px solid rgba(220, 53, 69, 0.7);
+  padding: 30px 40px;
+  border-radius: 10px;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 5px;
+  background: rgba(255, 255, 255, 0.1);
+}
 
 
 
@@ -269,6 +300,3 @@
     font-size: 12px;
   }
 }
-
-
-

@@ -1,0 +1,165 @@
+
+.t-invoice-container {
+    width: 76mm;
+    /*3-inch roll = 80 mm width = 576px*/
+    /* width: 56mm; 2-inch roll = 58 mm width */
+    margin: 0 auto;
+    padding: 10px;
+    /* border: 2px solid black; */
+}
+
+
+.t-store-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0px;
+
+    h1 {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight: bolder;
+        font-size: 25px;
+        margin: 0 0 0 10px;
+    }
+
+
+}
+
+.t-store-logo img {
+    margin: 0;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 60px;
+    height: auto;
+}
+
+.t-store-info {
+    /* display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.4;
+     margin-bottom: 10px; */
+    display: flex;
+    flex-direction: column;
+    
+
+    p {
+        font-size: 12px;
+        margin: 0;
+        text-align:center ;
+    }
+
+}
+
+.t-invoice-detailss{
+    /* border: 1px solid black; */
+    margin-top: 10px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+}
+.t-customer-info {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.t-invoice-details div,
+.t-customer-info p {
+    margin: 2px 0;
+}
+
+.t-product-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.t-product-table th,
+.t-product-table td {
+    border-bottom: 1px dashed #000;
+    padding: 3px 2px;
+    text-align: left;
+    word-break: break-word;
+    font-size: 13px;
+}
+
+.t-invoice-summary {
+    font-size: 10px;
+    margin-top: 10px;
+    display: flex;
+}
+.t-tandc{
+    width: 50%;
+    ul{
+        padding-left: 1rem;
+    }
+}
+.t-summary-table table {
+    width: 100%;
+    font-size: 16px;
+}
+
+.t-summary-table td {
+    padding: 3px 2px;
+}
+
+.t-invoice-footer {
+    margin-top: 10px;
+    font-size: 9px;
+}
+
+.t-invoice-footer ul {
+    padding-left: 14px;
+    margin: 4px 0;
+}
+
+.t-congrats-msg{
+    margin: 0 0 5px 0;
+    text-align: center;
+}
+
+.t-thank-you-message {
+    text-align: center;
+    font-size: 10px;
+    margin-top: 10px;
+    border-top: 1px dashed #000;
+        border-bottom: 1px dashed #000;
+    padding: 5px 0;
+
+    p{
+        margin: 0;
+    }
+}
+
+strong {
+    font-weight: bold;
+}
+
+.t-footer-note{
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.t-cancelled-stamp {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-size: 25px;
+  color: rgba(220, 53, 69, 0.5);
+  /* Bootstrap red with opacity */
+  font-weight: 900;
+  border: 5px solid rgba(220, 53, 69, 0.7);
+  padding: 10px 15px;
+  border-radius: 10px;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 5px;
+  background: rgba(255, 255, 255, 0.1);
+}
