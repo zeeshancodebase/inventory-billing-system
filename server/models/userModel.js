@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     salary: {
         type: Number,
     },
+    isAdmin: {
+        type:Boolean,
+        default:false
+    },
     status: {
         type: String,
         enum: ['active', 'inactive'],

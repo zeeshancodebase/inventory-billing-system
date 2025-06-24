@@ -1,45 +1,52 @@
-const Sale = require('../models/saleModel');
+const mongoose = require("mongoose");
+const Sale = require("../models/saleModel");
+const Product = require("../models/productModel");
+
 
 const getSaleById = async (req, res, next) => {
-  try {
-    const sale = await Sale.findOne({ invoiceId: req.params.invoiceId }).populate('salesManId');
-    if (!sale) return res.status(404).json({ error: "Sale not found" });
+    try {
+        const sale = await Sale.findOne({ invoiceId: req.params.invoiceId }).populate('salesManId');
+        if (!sale) return res.status(404).json({ message: "Sale not found" });
 
-    res.status(200).json(sale);
-  } catch (err) {
-    next(err);
-  }
+        res.status(200).json(sale);
+    } catch (err) {
+        next(err);
+    }
 };
 
 const getAllSales = async (req, res) => {
-  try {
-    const sales = await Sale.find().sort({ createdAt: -1 }).populate('salesManId');
-    res.status(200).json(sales);
-  } catch (err) {
-    res.status(500).json({ error: "Server error" });
-  }
+    try {
+        const sales = await Sale.find().sort({ createdAt: -1 }).populate('salesManId');
+        res.status(200).json(sales);
+    } catch (err) {
+        res.status(500).json({ message: "Server error" });
+    }
 };
 
 const cancelSale = async (req, res, next) => {
-    const { saleId } = req.params;
+    const { invoiceId } = req.params;
+
+    if (!req.user.isAdmin) {
+        return res.status(401).json({ message: "Unauthorized: You are not allowed to cancel this sale" });
+    }
 
     const session = await mongoose.startSession();
     session.startTransaction();
 
     try {
         // 1. Find the sale
-        const sale = await Sale.findById(saleId).session(session);
+        const sale = await Sale.findOne({ invoiceId }).session(session);
 
         if (!sale) {
             await session.abortTransaction();
             session.endSession();
-            return res.status(404).json({ error: "Sale not found" });
+            return res.status(404).json({ message: "Sale not found" });
         }
 
         if (sale.status === "cancelled") {
             await session.abortTransaction();
             session.endSession();
-            return res.status(400).json({ error: "Sale is already cancelled" });
+            return res.status(400).json({ message: "Sale is already cancelled" });
         }
 
         // 2. Fetch all products involved
@@ -98,7 +105,7 @@ const returnSale = async (req, res, next) => {
         if (!originalSale) {
             await session.abortTransaction();
             session.endSession();
-            return res.status(404).json({ error: "Original sale not found" });
+            return res.status(404).json({ message: "Original sale not found" });
         }
 
         // Map original cart for validation
@@ -119,7 +126,7 @@ const returnSale = async (req, res, next) => {
             if (!originalItem || item.quantity > originalItem.quantity) {
                 await session.abortTransaction();
                 session.endSession();
-                return res.status(400).json({ error: `Invalid return quantity for ${item.prodId}` });
+                return res.status(400).json({ message: `Invalid return quantity for ${item.prodId}` });
             }
 
             const product = productMap.get(item.prodId);
@@ -180,4 +187,4 @@ const returnSale = async (req, res, next) => {
 
 
 
-module.exports = {getAllSales,getSaleById, cancelSale, returnSale};
+module.exports = { getAllSales, getSaleById, cancelSale, returnSale };

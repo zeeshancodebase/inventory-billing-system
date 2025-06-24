@@ -10,7 +10,7 @@ const authMiddleware = require('../middlewares/authMiddleware.js');
 router.post("/checkout", authMiddleware, checkoutController.checkout);
 router.get("/getSaleById/:invoiceId", saleController.getSaleById);        // View one invoice/sale
 router.get("/getAllSales", saleController.getAllSales);           // List all sales
-router.post('/sales/:saleId/cancel', authMiddleware, saleController.cancelSale);
+router.put('/sales/:invoiceId/cancel', authMiddleware, saleController.cancelSale);
 
 
 // router.post("/checkout", checkoutController.checkout);           // Create new sale (checkout)

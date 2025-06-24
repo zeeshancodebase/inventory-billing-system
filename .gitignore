@@ -31,5 +31,6 @@ yarn-error.log*
 client/src/pages/NewSale/ui
 client/src/pages/Invoice/older
 client/sampleFolderStructure.txt
+client/src/pages/Invoice/MobileInvoice/DummyMobilePrint.jsx
 client/.gitignore
 server/.gitignore
