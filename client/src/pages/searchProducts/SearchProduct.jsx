@@ -1,7 +1,11 @@
 // pages/SearchProduct.jsx
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsAsync, deleteProductAsync, setProduct  } from "../../features/products/productsSlice";
+import {
+  fetchProductsAsync,
+  deleteProductAsync,
+  setProduct,
+} from "../../features/products/productsSlice";
 import "./searchProduct.css";
 import { FaEdit } from "react-icons/fa";
 import {
@@ -28,12 +32,10 @@ const SearchProduct = () => {
   useEffect(() => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
-  
+
   const handleFilter = (type) => {
     setFilterType(type === filterType ? null : type); // toggle logic
   };
-
- 
 
   const ImageModal = ({ imageUrl, onClose }) => {
     if (!imageUrl) return null;
@@ -94,12 +96,10 @@ const SearchProduct = () => {
     }
   };
 
-
   const handleEdit = (product) => {
     dispatch(setProduct(product)); // Set product in Redux store for editing
     navigate(`/edit-product/${product.prodId}`); // Navigate to AddProduct page for editing
   };
-
 
   return (
     <div className="productsPage">
@@ -118,7 +118,7 @@ const SearchProduct = () => {
           </button>
           <input
             type="text"
-            placeholder="Search by Product Name or ID..."
+            placeholder="Search by Product ID or Name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -192,7 +192,24 @@ const SearchProduct = () => {
                       </span>
                     </td>
                     {filterType !== "box" && <td>{product.totalLength}</td>}
-                    <td>{product.quantity}</td>
+                    <td>
+                      {product.isOutOfStock ? (
+                        <div
+                          title="Out of Stock"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            color: "#ff4d4f",
+                            fontWeight: "bold",
+                            fontSize: "14px",
+                          }}
+                        >
+                          🚫 Out of Stock
+                        </div>
+                      ) : (
+                        product.quantity
+                      )}
+                    </td>
                     <td>{product.minimumStock}</td>
                     <td>
                       {product.image ? (
@@ -215,10 +232,7 @@ const SearchProduct = () => {
                     <td>
                       <button className="edit-button">
                         {" "}
-                        <FaEdit
-                          size={20}
-                          onClick={() => handleEdit(product)}
-                        />
+                        <FaEdit size={20} onClick={() => handleEdit(product)} />
                       </button>
                       <button className="delete-button">
                         <MdDelete

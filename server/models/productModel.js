@@ -71,7 +71,11 @@ const productSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    minimumStock: { type: Number, default: 10 }
+    minimumStock: { type: Number, default: 10 },
+    isOutOfStock: {
+    type: Boolean,
+    default: false,
+  },
 }, {
     timestamps: true,
 });

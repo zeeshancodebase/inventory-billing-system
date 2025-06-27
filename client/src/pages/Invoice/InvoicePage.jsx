@@ -67,7 +67,7 @@ const InvoicePage = () => {
     return (
       <div className="invoice-page">
         <h2>{error}</h2>
-        <button onClick={() => navigate("/")}>Go Back</button>
+        <button onClick={() => navigate("/new-sale")}>Go Back</button>
       </div>
     );
 
@@ -102,7 +102,7 @@ const InvoicePage = () => {
 
       <div className="invoice-wrapper">
         <div className="invoice-header-btns">
-          <button className="back-btn" onClick={() => navigate("/")}>
+          <button className="back-btn" onClick={() => navigate("/new-sale")}>
             <FaArrowLeft /> Back
           </button>
           <div className="action-buttons">

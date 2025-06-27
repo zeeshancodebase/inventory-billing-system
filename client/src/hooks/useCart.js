@@ -7,6 +7,7 @@ import {
     removeFromCart,
     updateCartQuantity,
 } from "../features/cart/cartSlice";
+import { toast } from "react-toastify";
 
 
 
@@ -21,7 +22,7 @@ export const useCart = () => {
 
     const handleAddToCart = (product, quantity = 1) => {
         if (!product || quantity <= 0) {
-            alert("Invalid product or quantity");
+            toast.error("Invalid product or quantity");
             return;
         }
 
@@ -44,14 +45,14 @@ export const useCart = () => {
         if (!item) return;
 
         if (!isStockAvailable(products, prodId, newQty)) {
-            alert("Utna stock available nahi hai.");
+            toast.error("Utna stock available nahi hai.");
             return;
         }
 
         if (item.prodType === "roll") {
             // Allow decimal values for rolls
             if (newQty <= 0) {
-                alert("Quantity must be greater than 0.");
+                toast.error("Quantity must be greater than 0.");
                 return;
             }
             dispatch(updateCartQuantity({ prodId, quantity: newQty, totalPrice: calculateTotalPrice(item.sellingPrice, newQty), }));
@@ -59,7 +60,7 @@ export const useCart = () => {
             // Only allow whole numbers for boxes
             const newQuantity = Math.floor(newQty); // Enforce whole number for boxes
             if (newQuantity <= 0) {
-                alert("Quantity must be greater than 0.");
+                toast.error("Quantity must be greater than 0.");
                 return;
             }
             dispatch(updateCartQuantity({
@@ -76,7 +77,8 @@ export const useCart = () => {
         const newQty = item.quantity + change;
 
         if (!isStockAvailable(products, prodId, newQty)) {
-            alert("utna stock available nahi hai.");
+            // alert("utna stock available nahi hai.");
+            toast.error("utna stock available nahi hai.");
             return;
         }
 

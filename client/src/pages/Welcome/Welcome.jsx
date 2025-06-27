@@ -16,27 +16,30 @@ const Welcome = () => {
     // Show the welcome message immediately
     setShowWelcome(true);
 
-    // If user is null or not logged in, redirect to login
-    if (!user || !isLoggedIn) {
-      navigate("/");
-      return; // Exit useEffect early
-    }
-
-    // with admin route
-    const timeout = setTimeout(() => {
-      if (!isFetching) {
-        if (user.isAdmin) {
-          navigate("/Admin/Dashboard");
-        } else if (user.role === "manager" || user.role === "salesman") {
-          navigate(`/Staff/Dashboard`);
-        } else {
-          toast.error("You are not an authorized person");
-        }
+    if (!isFetching) {
+      // If user is null or not logged in, redirect to login
+      if (!user || !isLoggedIn) {
+        toast.error("pehle Login karo")
+        navigate("/");
+        return; // Exit useEffect early
       }
-    }, 1500);
 
-    // Cleanup function
-    return () => clearTimeout(timeout);
+      // with admin route
+      const timeout = setTimeout(() => {
+        if (!isFetching) {
+          if (user.isOwner) {
+            navigate("/Admin/Dashboard");
+          } else if (user.role === "manager" || user.role === "salesman") {
+            navigate(`/Staff/Dashboard`);
+          } else {
+            toast.error("You are not an authorized person");
+          }
+        }
+      }, 1500);
+
+      // Cleanup function
+      return () => clearTimeout(timeout);
+    }
   }, [isFetching, navigate, user, isLoggedIn]);
 
   // Define styles for the spinner container
@@ -46,7 +49,7 @@ const Welcome = () => {
     justifyContent: "center",
     minHeight: "100vh",
     backgroundColor: "#f5f5f5",
-    color:"#000",
+    color: "#000",
   };
 
   const headingStyle = {
@@ -67,9 +70,7 @@ const Welcome = () => {
             size="3x"
             style={{ marginLeft: "20px" }}
           />
-          <h1 style={headingStyle}>
-            Welcome to Rehmat Textiles
-          </h1>
+          <h1 style={headingStyle}>Welcome to Rehmat Textiles</h1>
         </div>
       )}
     </div>

@@ -8,8 +8,9 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     phoneNumber: {
-        type: Number,
+        type: String,
         required: true,
+        unique: true 
     },
     password: {
         type: String,
@@ -26,14 +27,17 @@ const userSchema = new mongoose.Schema({
         type: Number,
     },
     isAdmin: {
-        type:Boolean,
-        default:false
+        type: Boolean,
+        default: false
     },
     status: {
         type: String,
         enum: ['active', 'inactive'],
-        default: 'inactive',
+        default: 'active',
     },
+    email: { type: String, required: true, unique: true },
+    otp: String,
+    otpExpires: Date
 
 
 }, {

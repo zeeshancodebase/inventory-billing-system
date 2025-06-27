@@ -15,6 +15,7 @@ import { resetCart } from "../../features/cart/cartSlice";
 import { useCart } from "../../hooks/useCart";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import Swal from "sweetalert2";
 
 const NewSale = () => {
   const dispatch = useDispatch();
@@ -142,7 +143,7 @@ const NewSale = () => {
 
   const handleSubmit = async () => {
     if (cart.length === 0) {
-      alert("Cart is empty. Please add products before checkout.");
+      toast.error("Cart is empty. Please add products before checkout.");
       return;
     }
 
@@ -151,16 +152,33 @@ const NewSale = () => {
     //   return;
     // }
 
+    // if (amountReceived < grandTotal) {
+    //   const confirmProceed = window.confirm(
+    //     `Amount received (${amountReceived}) is less than grand total (${grandTotal.toFixed(
+    //       2
+    //     )}). Proceed anyway?`
+    //   );
+    //   if (!confirmProceed) return;
+    // }
+
     if (amountReceived < grandTotal) {
-      const confirmProceed = window.confirm(
-        `Amount received (${amountReceived}) is less than grand total (${grandTotal.toFixed(
+      const result = await Swal.fire({
+        title: "Confirm Proceed?",
+        text: `Amount received (${amountReceived}) is less than grand total (${grandTotal.toFixed(
           2
-        )}). Proceed anyway?`
-      );
-      if (!confirmProceed) return;
+        )}). Proceed anyway?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, proceed",
+        cancelButtonText: "Cancel",
+      });
+
+      if (!result.isConfirmed) return;
     }
 
-    console.log("🛒 Current Cart:", cart);
+    // console.log("🛒 Current Cart:", cart);
 
     const checkoutData = {
       salesManId: user._id,
@@ -179,7 +197,7 @@ const NewSale = () => {
     };
 
     try {
-      console.log("Sale Data to backend:", checkoutData);
+      // console.log("Sale Data to backend:", checkoutData);
       const resultAction = await dispatch(
         createSaleAsync({ saleData: checkoutData, token })
       );
@@ -193,7 +211,7 @@ const NewSale = () => {
         toast.error(resultAction.payload || "Checkout failed");
       }
     } catch (err) {
-      console.error("Error during checkout:", err);
+      // console.error("Error during checkout:", err);
       toast.error("Unexpected error. Try again.", err);
     }
   };
@@ -276,8 +294,8 @@ const NewSale = () => {
                             {product.prodType === "roll"
                               ? (typeof product.totalLength === "number"
                                   ? Number(product.totalLength.toFixed(2))
-                                  : "-") + " m"
-                              : (product.quantity || "-") + " Bx"}
+                                  : "0") + " m"
+                              : (product.quantity || "0") + " Bx"}
                           </td>
 
                           <td>
@@ -323,6 +341,20 @@ const NewSale = () => {
                                 >
                                   +
                                 </button>
+                              </div>
+                            ) : product.isOutOfStock ? (
+                              <div
+                                style={{
+                                  backgroundColor: "#ff4d4f",
+                                  color: "white",
+                                  padding: "6px 10px",
+                                  textAlign: "center",
+                                  borderRadius: "5px",
+                                  fontWeight: "bold",
+                                  fontSize: "12px",
+                                }}
+                              >
+                                Out of Stock
                               </div>
                             ) : (
                               <button
@@ -534,7 +566,7 @@ const NewSale = () => {
               {saleLoading ? (
                 <>
                   <ClipLoader color="#fff" size={20} />
-                   &nbsp;CheckingOut...
+                  &nbsp;CheckingOut...
                 </>
               ) : (
                 <>

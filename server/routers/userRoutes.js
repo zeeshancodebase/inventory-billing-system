@@ -12,6 +12,8 @@ router.get('/getCurrentUser', authMiddleware, userController.getCurrentUser);
 router.route("/addStaff").post(userController.addStaff);
 router.get('/getAllStaff', userController.getAllStaff);
 router.delete('/deleteStaff/:id', userController.deleteStaff);
-router.put('/updateStaff/:id', userController.updateStaff);
+router.patch('/updateStaff/:id', userController.updateStaff);
+router.patch('/deactivateStaff/:id', userController.deactivateStaff);
+router.patch('/reactivateStaff/:id', userController.reactivateStaff);
 
 module.exports = router;

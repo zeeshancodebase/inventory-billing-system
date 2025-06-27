@@ -29,6 +29,7 @@ import { Error } from './pages/Error/Error'
 import PrintPreviewPage from './pages/Invoice/MobileInvoice/MobileInvoiceLayout';
 import MobileInvoiceLayout from './pages/Invoice/MobileInvoice/MobileInvoiceLayout';
 import DummyMobilePrint from './pages/Invoice/MobileInvoice/DummyMobilePrint';
+import ProfilePage from './pages/profile/ProfilePage';
 // import TempInvViewer from './pages/Invoice/TempInvViewer';
 
 
@@ -57,6 +58,7 @@ function App() {
           <Route path="/view-sales" element={<ViewSales />} />
           <Route path="/products" element={<SearchProduct />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile/:_id" element={<ProfilePage />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/welcome" element={<Welcome />} />

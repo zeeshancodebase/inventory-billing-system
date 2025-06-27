@@ -17,15 +17,15 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       if (!phoneNumber || !password) {
         toast.error("Please enter both phone number and password");
         return;
       }
 
-      setLoading(true); // Start spinner
-
+      setLoading(true);
       const res = await fetch(`${BASE_URL}/api/login`, {
         method: "POST",
         headers: {
@@ -34,21 +34,20 @@ const Login = () => {
         body: JSON.stringify({ phoneNumber, password }),
       });
       // console.log("Data sent from frontend: ",phoneNumber, password)
-      const data = await res.json();
 
+      const data = await res.json();
       if (res.ok) {
         storeTokenInLS(data.token);
-
-        // Redirect or show success (you can use react-router-dom or similar)
-        navigate("/welcome");
         toast.success("Login successful!");
+        navigate("/welcome");
       } else {
-        toast.error("Invalid Credentials");
+         toast.error(data.message || "Invalid credentials");
       }
     } catch (err) {
       console.error(err.message);
-    }finally {
-      setLoading(false); // Always stop spinner
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -114,8 +113,17 @@ const Login = () => {
           </div>
 
           <div className="text-center text-md-start mt-4 pt-2">
-            <MDBBtn className="mb-0 px-5" size="lg" onClick={handleLogin} disabled={loading}>
-            {loading ? <ClipLoader color="#fff" loading={loading} size={20} />: "Login"}
+            <MDBBtn
+              className="mb-0 px-5"
+              size="lg"
+              onClick={handleLogin}
+              disabled={loading}
+            >
+              {loading ? (
+                <ClipLoader color="#fff" loading={loading} size={20} />
+              ) : (
+                "Login"
+              )}
             </MDBBtn>
           </div>
         </div>

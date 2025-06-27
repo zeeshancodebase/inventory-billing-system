@@ -120,8 +120,16 @@ const checkout = async (req, res, next) => {
             const product = productMap.get(item.prodId);
             if (item.prodType === "roll") {
                 product.totalLength -= item.quantity;
+                if (product.totalLength <= 0) {
+                    product.totalLength = 0;
+                    product.isOutOfStock = true;
+                }
             } else {
                 product.quantity -= item.quantity;
+                if (product.quantity <= 0) {
+                    product.quantity = 0;
+                    product.isOutOfStock = true;
+                }
             }
         }
 

@@ -17,6 +17,13 @@ const login = async (req, res, next) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    // ❗ Prevent login if user is inactive
+    if (user.status !== 'active') {
+      return res.status(403).json({
+        message: 'Your account is inactive. Please contact the administrator.',
+      });
+    }
+
     const isPasswordValid = await user.comparePassword(password);
 
     if (!isPasswordValid) {
@@ -41,7 +48,7 @@ const login = async (req, res, next) => {
 
 
 // *--------------------------------
-// * 
+// * Getting the current loggedin user
 // *--------------------------------
 
 const getCurrentUser = async (req, res) => {
@@ -63,16 +70,17 @@ const getCurrentUser = async (req, res) => {
 
 const addStaff = async (req, res) => {
   try {
-    const { fullName, phoneNumber, role, address, password, salary } = req.body;
+    const { fullName, phoneNumber, role, address, email, salary } = req.body;
 
     // Create a new User instance
     const newStaff = new User({
       fullName: fullName,
       phoneNumber: phoneNumber,
-      password: password,
+      email: email,
       role: role,
       address: address,
       salary: salary,
+      password: 123,
     });
 
     // console.log(newStaff);
@@ -88,6 +96,8 @@ const addStaff = async (req, res) => {
       staff: savedStaff,
     });
   } catch (error) {
+    // console.log(error);
+
     // Handle errors
     res.status(500).json({
       message: 'Error adding Staff',
@@ -113,7 +123,53 @@ const getAllStaff = async (req, res, next) => {
       users,
     });
   } catch (error) {
-    nexr(error);
+    next(error);
+  }
+};
+
+// *--------------------------------
+// * Mark as inactive
+// *--------------------------------
+
+const deactivateStaff = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const staff = await User.findById(id);
+    if (!staff) {
+      return res.status(404).json({ error: "Staff not found" });
+    }
+
+    staff.status = "inactive";
+    await staff.save();
+
+    res.status(200).json({ message: "Staff member deactivated successfully." });
+  } catch (error) {
+    console.error("Error deactivating staff:", error);
+    res.status(500).json({ error: "Failed to deactivate staff member." });
+  }
+};
+
+// *--------------------------------
+// * Reactivating staff
+// *--------------------------------
+
+const reactivateStaff = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const staff = await User.findById(id);
+    if (!staff) {
+      return res.status(404).json({ error: "Staff not found" });
+    }
+
+    staff.status = "active";
+    await staff.save();
+
+    res.status(200).json({ message: "Staff member reactivated successfully." });
+  } catch (error) {
+    console.error("Error reactivating staff:", error);
+    res.status(500).json({ error: "Failed to reactivate staff member." });
   }
 };
 
@@ -177,5 +233,7 @@ module.exports = {
   getAllStaff,
   deleteStaff,
   updateStaff,
+  deactivateStaff,
+  reactivateStaff,
   getCurrentUser
 };
